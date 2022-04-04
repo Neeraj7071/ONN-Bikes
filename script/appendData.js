@@ -34,29 +34,10 @@ function displayData(Data,parent,empty)
         btn.innerText="BOOK NOW";
         btn.setAttribute("data-bs-toggle","modal");
         btn.setAttribute("data-bs-target","#exampleModal")
-        btn.addEventListener("click",async()=>{
+        btn.addEventListener("click",()=>{
             let arr=[]
-            arr.push(ele);
-            let userid=JSON.parse(localStorage.getItem("Current_User"))
-            let obj={
-                userId:userid[0].userId,
-                productId:ele._id
-            }
-            console.log(obj);
-            const cartobj=JSON.stringify(obj)
-            let res = await fetch(
-                "https://onnbike-clone.herokuapp.com/cart",
-                {
-                  method: `POST`,
-                  body: cartobj,
-                  headers: {
-                    "Content-Type": `application/json`,
-                  },
-                }
-              );
-              let data = await res.json();
-              console.log("data", data);
-              localStorage.setItem("cart_Data",JSON.stringify(arr));
+            arr.push(ele)
+            localStorage.setItem("cart_Data",JSON.stringify(arr));
         })
         combine2.append(price,btn);
         div.append(combine,name,combine1,combine2);

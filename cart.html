@@ -83,19 +83,8 @@
     import displaycart from "./script/displaycart.js"
     console.log("a",displaycart);
     let parent_div=document.getElementById("cart_container")
-    
-    let Current_User= JSON.parse(localStorage.getItem("Current_User"))
-    let find=Current_User[0].userId
-    async function dta(){
-        try {
-            const res= await fetch(`https://onnbike-clone.herokuapp.com/cart/${find}`);
-            const Datra=await res.json();
-            return [Datra.productId];
-        } catch (error) {
-            console.log({message:error.message});
-        }
-    }
-    let cart_Data=await dta();
+    let cart_Data=JSON.parse(localStorage.getItem("cart_Data"))||[];
+    console.log(cart_Data);
     displaycart(cart_Data,parent_div)
     import header from "./components/header.js"
     let navbar_div=document.getElementById("navbar");
@@ -114,4 +103,4 @@
     document.getElementById("welcome").innerText=Current_UserLogin[0].first_name;
     }
 </script>
-<script type="module" src="./script/cart.js"></script>
+<script src="./script/cart.js"></script>
